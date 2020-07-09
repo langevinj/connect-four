@@ -1,0 +1,14 @@
+HTML:
+    -possibly a table for the grid 7 x 6
+    -could represent a played piece by changing the id/class of the tr element and matching that with a corresponding CSS declaration to either create the circle or place in an image
+    -top row should be buttons/could be a large selection, and target would be what you click
+
+Functions that would be useful:
+
+fillSquare
+
+checkWinner
+    -with an alert if there is one
+
+checkIfEmpty
+
