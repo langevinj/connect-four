@@ -59,9 +59,18 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 0
-  return 0;
-}
+  let temp = null;
+  for(let i = 0; i < HEIGHT; i++){
+      if((board[i][x] === null)){
+        temp = i;
+      }
+  };
+  if(temp !== null){
+    return temp;
+  } else {
+    return null;
+  }
+};
 
 /** placeInTable: update DOM to place piece into HTML table of board */
 
@@ -78,14 +87,15 @@ function placeInTable(y, x) {
 
 function endGame(msg) {
   // TODO: pop up alert message
+  alert(msg);
 }
 
 /** handleClick: handle click of column top to play piece */
 
 function handleClick(evt) {
   // get x from ID of clicked cell
-  let x = +evt.target.id;
 
+  let x = +evt.target.id;
   // get next spot in column (if none, ignore click)
   let y = findSpotForCol(x);
   if (y === null) {
@@ -95,6 +105,7 @@ function handleClick(evt) {
   // place piece in board and add to HTML table
   // TODO: add line to update in-memory board
   placeInTable(y, x);
+  board[y][x] = currPlayer;//need to check if this is what is meant by step 6.1
 
   // check for win
   if (checkForWin()) {
@@ -102,10 +113,15 @@ function handleClick(evt) {
   }
 
   // check for tie
-  // TODO: check if all cells in board are filled; if so call, call endGame
+  let isFull = board.every(function (val) {
+    return val === null;
+  });
 
-  // switch players
-  // TODO: switch currPlayer 1 <-> 2
+  if(isFull){
+    endGame();
+  }
+
+  currPlayer === 1 ? currPlayer = 2 : currPlayer = 1;//switch players
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
