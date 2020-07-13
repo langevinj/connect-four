@@ -16,7 +16,7 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard() {
-  // TODO: set "board" to empty HEIGHT x WIDTH matrix array
+  //Creates a nessed array representing the board, where each cell is filled with null
   for(let i = 0; i < HEIGHT; i++){
       let temp = [];
       for (let z = 0; z < WIDTH; z++){
@@ -27,9 +27,8 @@ function makeBoard() {
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
-
 function makeHtmlBoard() {
-  // TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
+  // gets element with ID of board from HTML
   let htmlBoard = document.getElementById("board");
 
   //creates top, hoverable row element and cells, and gives them an ID
@@ -57,7 +56,6 @@ function makeHtmlBoard() {
 }
 
 /** findSpotForCol: given column x, return top empty y (null if filled) */
-
 function findSpotForCol(x) {
   let temp = null;
   for(let i = 0; i < HEIGHT; i++){
@@ -75,7 +73,7 @@ function findSpotForCol(x) {
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
-  // TODO: make a div and insert into correct table cell
+  //makes a div and places it into correct table cell
   let temp = document.getElementById(`${y}-${x}`);
   let newDiv = document.createElement("div");
   newDiv.classList.add('piece');
@@ -86,7 +84,7 @@ function placeInTable(y, x) {
 /** endGame: announce game end */
 
 function endGame(msg) {
-  // TODO: pop up alert message
+  // popup alert message
   alert(msg);
 }
 
@@ -102,10 +100,9 @@ function handleClick(evt) {
     return;
   }
 
-  // place piece in board and add to HTML table
-  // TODO: add line to update in-memory board
+  // place piece in board and adds to HTML table
   placeInTable(y, x);
-  board[y][x] = currPlayer;//need to check if this is what is meant by step 6.1
+  board[y][x] = currPlayer;
 
   // check for win
   if (checkForWin()) {
@@ -142,7 +139,7 @@ function checkForWin() {
     );
   }
 
-  // TODO: read and understand this code. Add comments to help you.
+  //creates arrays of the cells in the described arrangements, then checks if they all contain the same current player # with .every to check for a Win
 
   for (let y = 0; y < HEIGHT; y++) {
     for (let x = 0; x < WIDTH; x++) {
